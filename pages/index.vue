@@ -4,22 +4,7 @@
       <Logo />
       <h1 class="title">nuxt-ssg-sample</h1>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        <nuxt-link v-for="id in [1,2,3,4,5]" :key="id" :to="`/somethings/${id}`">{{ id }}</nuxt-link>
       </div>
     </div>
   </div>

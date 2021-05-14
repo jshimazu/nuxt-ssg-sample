@@ -1,6 +1,7 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
+  ssr: true,
   target: 'static',
+  // Target: https://go.nuxtjs.dev/config-target
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,4 +37,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  generate: {
+    crawler: false,
+    async routes() {
+      const routes = []
+      const ids = [1,2,3,4,5]
+      for (const id of ids) {
+        routes.push({
+          route: `/somethings/${id}`,
+        });
+      }
+      return routes;
+    }
+  }
 }
