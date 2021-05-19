@@ -39,6 +39,7 @@ export default {
   build: {},
   generate: {
     crawler: false,
+    fallback: true,
     async routes() {
       const routes = []
       const ids = [1,2,3,4,5]
