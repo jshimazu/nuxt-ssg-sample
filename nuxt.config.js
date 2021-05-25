@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   ssr: true,
   target: 'static',
@@ -42,13 +44,14 @@ export default {
     fallback: true,
     async routes() {
       const routes = []
-      const ids = [1,2,3,4,5]
-      for (const id of ids) {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
+      for (const todo of res.data) {
         routes.push({
-          route: `/somethings/${id}`,
-        });
+          route: `/todos/${todo.id}`,
+          payload: todo,
+        })
       }
-      return routes;
-    }
-  }
+      return routes
+    },
+  },
 }

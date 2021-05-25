@@ -1,48 +1,23 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">nuxt-ssg-sample</h1>
-      <div class="links">
-        <nuxt-link v-for="id in [1,2,3,4,5]" :key="id" :to="`/somethings/${id}`">{{ id }}</nuxt-link>
+  <div>
+    <div>TODO list</div>
+    <template v-if="todos">
+      <div class="links" v-for="todo in todos" :key="todo.id">
+        {{ todo.id }}.
+        <nuxt-link :to="`/todos/${todo.id}`">{{ todo.title }}</nuxt-link>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  async asyncData() {
+    const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
+    return {
+      todos: res.data,
+    }
+  },
+}
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
